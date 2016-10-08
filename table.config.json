@@ -1,0 +1,23 @@
+{
+  "diffs": {
+    "name": "diffs",
+    "cols": {
+      "url": "string",
+      "diffs": "object"
+    }
+  },
+  "targets": {
+    "name": "targets",
+    "cols": {
+      "url": "string",
+      "targets": "object"
+    }
+  },
+  "urls": {
+    "name": "urls",
+    "cols": {
+      "url": "string",
+      "html": "string"
+    }
+  }
+}

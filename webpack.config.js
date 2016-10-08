@@ -1,11 +1,14 @@
 const WebpackProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 module.exports = {
-  entry: ['babel-polyfill', './index.js'],
+  entry: {
+    load: ['babel-polyfill', './load.js'],
+    parse: ['babel-polyfill', './parse.js']
+  },
   output: {
     libraryTarget: 'commonjs2',
     path: './build',
-    filename: 'index.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [{
