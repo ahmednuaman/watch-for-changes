@@ -81,4 +81,4 @@ jspm_packages
 *.tgz
 
 aws.config.json
-queues.config.json
+queue.config.json
