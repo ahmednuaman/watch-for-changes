@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import { config } from 'aws-sdk'
 import { diffWords } from 'diff'
-import awsConfig from './aws.config.json'
+import awsConfig from './config/aws.config.json'
 import browser from './lib/browser'
 import db from './lib/db'
 import queue from './lib/queue'
-import queueConfig from './queue.config.json'
-import tableConfig from './table.config.json'
+import queueConfig from './config/queue.config.json'
+import tableConfig from './config/table.config.json'
 
 config.update(awsConfig)
 
