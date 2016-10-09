@@ -1,16 +1,22 @@
-import _ from 'lodash'
 import { config } from 'aws-sdk'
 import { diffWords } from 'diff'
+
+import _ from 'lodash'
 import awsConfig from './config/aws.config.json'
 import browser from './lib/browser'
 import db from './lib/db'
-import queue from './lib/queue'
-import queueConfig from './config/queue.config.json'
+import request from './lib/request'
 import tableConfig from './config/table.config.json'
 
 config.update(awsConfig)
 
-const handler = ({ url, html }, context, callback) => {
+const handler = ({ url }, context, callback) => {
+  try {
+    const body = await request(url)
+  } catch (error) {
+    return callback(error)
+  }
+
   const targets = await db.get({ url }, tableConfig.targets.name)
   const window = await browser(html)
 
@@ -31,14 +37,12 @@ const handler = ({ url, html }, context, callback) => {
     await db.put({
       url,
       Date.now(): diffs
-    })
+    }, tableConfig.diffs.name)
 
-    await queue.send(queueConfig.diffs, url, {
-      diffs: {
-        DataType: 'string',
-        StringValue: JSON.stringify(diffs)
-      }
-    })
+    await db.put({
+      url,
+      diffs
+    }, tableConfig.changes.name)
   }
 
   callback()

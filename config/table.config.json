@@ -1,4 +1,11 @@
 {
+  "changes": {
+    "name": "changes",
+    "cols": {
+      "url": "string",
+      "diffs": "object"
+    }
+  },
   "diffs": {
     "name": "diffs",
     "cols": {
