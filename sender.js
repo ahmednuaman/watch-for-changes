@@ -21,7 +21,7 @@ const handler = ({ email, changes }, context, callback) => {
       .join('\n    ')
       .value()
   )
-  const body = `Hey-yo! ${subject}\n\n${diffs.join('\n')}`
+  const body = `Hey-yo! ${subject}\n\n${diffs.join('\n')}\n\nFrom watch-for-changes`
 
   try {
     await ses.sendEmail(email, subject, body)
